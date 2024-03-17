@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import { useState, useReducer, ChangeEvent } from "react";
 import Modal from "react-modal";
 import { useAddTaskMutation } from "../Api/AddTask.js";
 import { toast } from "react-toastify";
@@ -27,13 +27,13 @@ const customStyles = {
 const TaskLists = () => {
   const [openModal, setOpenModal] = useState(false);
 
-  const { data, isLoading, refetch: getTableData } = useGetTaskQuery();
+  const { data, isLoading, refetch: getTableData } = useGetTaskQuery({});
   const [addTask] = useAddTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   const [updateTask] = useUpdateTaskMutation();
 
   const [localState, setLocalState] = useReducer(
-    (prevState, newState) => {
+    (prevState: StateType, newState: ActionType) => {
       return { ...prevState, ...newState };
     },
     {
@@ -55,7 +55,7 @@ const TaskLists = () => {
     setOpenModal(!openModal);
   };
 
-  const onHandleChange = (e) => {
+  const onHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLocalState({ [name]: value });
   };
@@ -68,7 +68,7 @@ const TaskLists = () => {
     setOpenModal(!openModal);
   };
 
-  const handleSubmitTask = (e) => {
+  const handleSubmitTask = () => {
     const data = {
       technology,
       task,
@@ -99,7 +99,7 @@ const TaskLists = () => {
     }
   };
 
-  const handleEditClick = (item) => {
+  const handleEditClick = (item: any) => {
     console.log("id>>>>>>", item);
     setOpenModal(!openModal);
     setLocalState({
@@ -113,7 +113,7 @@ const TaskLists = () => {
     setOpenModal(!openModal);
   };
 
-  const handleDeleteTask = (item) => {
+  const handleDeleteTask = (item: any) => {
     console.log("dsnjanfnfdskfkdfjdkfjdkjflkddfd", item);
     const taskId = item._id;
 
@@ -132,9 +132,9 @@ const TaskLists = () => {
     <div>
       <button
         className="d-flex mx-auto my-3"
-        onClick={(e) => {
+        onClick={() => {
           resetState();
-          handleTaskCreateModal(e);
+          handleTaskCreateModal();
         }}
       >
         Add new task
@@ -151,7 +151,7 @@ const TaskLists = () => {
               <th>Delete</th>
               <th>Edit</th>
             </tr>
-            {data?.tasks?.map((item, i) => (
+            {data?.tasks?.map((item: any, i: number) => (
               <tr key={i}>
                 <td>{get(item, "teamLeadId.name", "")}</td>
                 <td>{get(item, "technologyId.technology", "")}</td>
@@ -160,7 +160,7 @@ const TaskLists = () => {
                 <td onClick={() => handleDeleteTask(item)}>
                   <DeleteIcon />
                 </td>
-                <td onClick={(e) => handleEditClick(item)}>
+                <td onClick={() => handleEditClick(item)}>
                   <EditIcon />
                 </td>
               </tr>
@@ -266,3 +266,11 @@ const TaskLists = () => {
 };
 
 export default TaskLists;
+
+export interface StateType {
+  technology: string;
+  task: string;
+  taskId: string;
+}
+
+export type ActionType = Partial<StateType>;

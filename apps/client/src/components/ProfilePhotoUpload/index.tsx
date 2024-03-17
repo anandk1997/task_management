@@ -1,4 +1,4 @@
-import React from "react";
+import { ChangeEvent } from "react";
 import { useUploadImageMutation } from "../../Api/UploadImage";
 import { FormControl } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -13,20 +13,22 @@ const ProfilePhotoUpload = () => {
   const [uploadProfile, { isLoading }] = useUploadImageMutation();
   const { data: profile, refetch } = useGetImageQuery(user._id);
 
-  const onFileChange = (e) => {
-    const file = e.target.files[0];
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
 
-    handlePhoto(file);
+    if (file) handlePhoto(file);
   };
 
-  const handlePhoto = (uploadImage) => {
+  const handlePhoto = (uploadImage: any) => {
     if (uploadImage) {
       const formData = new FormData();
       formData.append("photo", uploadImage);
 
       uploadProfile(formData)
         .then((res) => {
-          toast.success(res.data.message ?? "Image uplaoded successfully");
+          if ("data" in res) {
+            toast.success(res.data?.message ?? "Image uploaded successfully");
+          }
           refetch();
         })
         .catch((error) => {

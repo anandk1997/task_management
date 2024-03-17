@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import Header from "./Header";
 
 import { TaskManagementCurrentUser } from "../utils/validations";
 import "react-toastify/dist/ReactToastify.css";
 import { Box, Typography } from "@mui/material";
 
-const MainContainer = ({ children }) => {
+const MainContainer = ({ children }: { children: ReactNode }) => {
   const { localStorageToken } = TaskManagementCurrentUser();
 
   // const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem("token"));

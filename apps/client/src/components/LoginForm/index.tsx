@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import { useReducer, ChangeEvent, FormEvent } from "react";
 import {
   Button,
   TextField,
@@ -20,7 +20,7 @@ const LoginForm = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
 
   const [localState, setLocalState] = useReducer(
-    (prevState, newState) => {
+    (prevState: StateType, newState: ActionType) => {
       return { ...prevState, ...newState };
     },
     { email: "", password: "" }
@@ -28,8 +28,9 @@ const LoginForm = () => {
 
   const { email, password } = localState;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (email === "" || password === "") {
       toast.error("Please enter email and password");
     } else {
@@ -57,7 +58,7 @@ const LoginForm = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLocalState({ [name]: value });
   };
@@ -119,3 +120,10 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+interface StateType {
+  email: string;
+  password: string;
+}
+
+type ActionType = Partial<StateType>;

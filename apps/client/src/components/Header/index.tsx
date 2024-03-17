@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -25,13 +25,13 @@ function Header() {
 
   const navigate = useNavigate();
 
-  const handleOpenNavMenu = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-
-
-    console.log('gggggggggggggggggggggggg')
+  // const handleOpenNavMenu = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleOpenNavMenu = (e: any) => {
+    console.log("gggggggggggggggggggggggg");
     setAnchorElNav(e.currentTarget);
   };
-  const handleOpenUserMenu = (e) => {
+
+  const handleOpenUserMenu = (e: any) => {
     setAnchorElUser(e.currentTarget);
   };
 
@@ -39,9 +39,9 @@ function Header() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = (menuOption) => {
+  const handleCloseUserMenu = (menuOption: string) => {
     setAnchorElUser(null);
-    console.log(menuOption);
+    console.log("menuOption", menuOption);
     switch (menuOption) {
       case "Profile":
         navigate("/profile");
@@ -91,15 +91,16 @@ function Header() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              // size="large"
-              // aria-label="account of current user"
-              // aria-controls="menu-appbar"
-              // aria-haspopup="true"
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              // color="inherit"
+              color="inherit"
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}

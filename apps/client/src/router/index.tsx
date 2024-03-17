@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 import LoginForm from "../components/LoginForm/index.js";

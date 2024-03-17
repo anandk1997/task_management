@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store";
 import { BrowserRouter as Router } from "react-router-dom";
-import history from "./providers/history";
 import { PersistGate } from "redux-persist/integration/react";
+
 import MainContainer from "./components/MainContainer";
 import MainRoute from "./router";
 import { ToastContainer } from "react-toastify";
@@ -17,7 +17,7 @@ function App() {
 
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <Router history={history}>
+          <Router>
             <MainContainer>
               <MainRoute />
             </MainContainer>

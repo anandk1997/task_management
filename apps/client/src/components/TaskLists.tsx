@@ -1,12 +1,12 @@
 import React, { useState, useReducer } from "react";
 import Modal from "react-modal";
-import { useAddTaskMutation } from "../Api/AddTask";
+import { useAddTaskMutation } from "../Api/AddTask.js";
 import { toast } from "react-toastify";
-import { handleError } from "../utils/handleError";
-import { useGetTaskQuery } from "../Api/GetTaskLists";
+import { handleError } from "../utils/handleError.js";
+import { useGetTaskQuery } from "../Api/GetTaskLists.js";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useDeleteTaskMutation } from "../Api/DeleteTask";
+import { useDeleteTaskMutation } from "../Api/DeleteTask.js";
 import { useUpdateTaskMutation } from "../Api/UpdateTask.js";
 import "../components/tablec.css";
 import "../App.css";

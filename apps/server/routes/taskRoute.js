@@ -39,7 +39,6 @@ router.post("/uploadfile", protect, restrictTo("TL"), uploadUserPhoto);
 // router.route("/profiles/:id").get(getPhoto);
 router.get("/profile/:id", protect, restrictTo("TL"), getPhoto);
 
-
 // //Task create
 router.post("/task", protect, restrictTo("TL"), createTask);
 router.get("/task", protect, restrictTo("TL"), getAllTasks);
@@ -49,9 +48,6 @@ router.delete("/task/:id", protect, restrictTo("TL"), deleteTask);
 // router.get("/profile/:id", protect, restrictTo("TL"), getPhoto);
 
 export default router;
-
-
-
 
 // import rootReducers from "../reducers";
 // import storage from "redux-persist/lib/storage";
@@ -76,7 +72,6 @@ export default router;
 //   middleware: (getDefaultMiddleware) =>
 //     getDefaultMiddleware({ serializableCheck: false }).concat(api.middleware),
 
-    
 //   devTools: process.env.NODE_ENV !== "production",
 // });
 

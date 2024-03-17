@@ -7,7 +7,7 @@ export const TaskManagementCurrentUser = () => {
       loginToken: get<string | null>(state, "LoginSlice.loginToken", null),
       user: get<Record<string, any> | null>(state, "LoginSlice.user", null),
     }),
-    shallowEqual
+    shallowEqual,
   );
   const localStorageToken = loginToken || localStorage.getItem("token");
 

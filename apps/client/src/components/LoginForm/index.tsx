@@ -23,7 +23,7 @@ const LoginForm = () => {
     (prevState: StateType, newState: ActionType) => {
       return { ...prevState, ...newState };
     },
-    { email: "", password: "" }
+    { email: "", password: "" },
   );
 
   const { email, password } = localState;

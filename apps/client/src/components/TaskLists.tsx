@@ -40,7 +40,7 @@ const TaskLists = () => {
       technology: "",
       task: "",
       taskId: "",
-    }
+    },
   );
 
   const { technology, task, taskId } = localState;

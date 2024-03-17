@@ -8,7 +8,7 @@ export const get = <T>(
   source: SourceType,
   path: string,
   defaultValue: T,
-  callback?: CallbackType<T>
+  callback?: CallbackType<T>,
 ): T | ReturnType<CallbackType<T>> => {
   let value = lodashGet(source, path, defaultValue);
 

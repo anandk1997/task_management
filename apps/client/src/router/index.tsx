@@ -17,7 +17,6 @@ const MainRoute = () => {
         <Route element={<AuthGuard />}>
           <Route path="/tasklists" element={<TaskLists />} />
           <Route path="/profile" element={<ProfilePhotoUpload />} />
-          <Route path="/signup" element={<ProfilePhotoUpload />} />
         </Route>
 
         <Route path="*" element={<h1>Page not found</h1>} />

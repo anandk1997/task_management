@@ -27,7 +27,6 @@ function Header() {
 
   // const handleOpenNavMenu = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
   const handleOpenNavMenu = (e: any) => {
-    console.log("gggggggggggggggggggggggg");
     setAnchorElNav(e.currentTarget);
   };
 

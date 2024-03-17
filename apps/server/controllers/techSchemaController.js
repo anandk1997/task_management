@@ -85,11 +85,6 @@ export const getPhoto = async (req, res) => {
       return res.status(415).json({ error: "Unsupported file format" });
     }
 
-    // const imageStream = fs.createReadStream(filePath);
-
-    res.setHeader("Content-Type", `image/${fileExtension.slice(1)}`);
-    res.setHeader("Cache-Control", "no-cache");
-
     const imageUrl = `http://localhost:5000/images/${fileName}`;
     console.log(imageUrl);
     return res.status(200).json({ status: "success", imageUrl });
@@ -202,7 +197,7 @@ export const updateTech = async (req, res) => {
     const updatedTech = await TechSchema.findByIdAndUpdate(
       { _id: id },
       { technology },
-      { new: true },
+      { new: true }
     );
 
     if (!updatedTech) {
@@ -283,7 +278,7 @@ export const updateTask = async (req, res) => {
     const updatedTask = await Task.findByIdAndUpdate(
       { _id: id },
       { task },
-      { new: true },
+      { new: true }
     );
     console.log("updateTask>>>>>>>>>>>>>", updatedTask);
     if (!updatedTask) {
